@@ -1,0 +1,60 @@
+react props 
+
+1.	how to parent compoenent to child component data  send method 
+	
+	import Child from './compoenent/Child';
+
+	var Parent = ()=>{
+	
+		const color = 'red';
+		const brand = 'hondai'
+		return (
+			<>
+			<h1> parent </h>
+			<Child varient ={color} brand ={brand} />
+			</>
+		)
+	}
+	
+	
+	var child = (props)=>{
+	
+		const {varient,brand} =props;
+		
+		return (
+		 <>
+		   <h1> the car color is {varient} </h1>
+		   <h1> the car brand is {brand}</h1>
+		 </>
+		)
+	}
+	
+2 child to parent data passing use props and state and callback
+
+	var child =(props) =>{
+	const {change_parent_title} = props;
+		return (
+			 <div>
+				<h1>child</h1>
+				<button onClick={ change_parent_title('let me code')}>Click me update parent heading</button>
+			 </div>	
+		)
+   }
+   
+   export default child;
+   
+   import Child from './child';
+   import useState from 'react';
+   
+   var parent =()=>{
+     const [word,setWord] = useState('parent');
+	 
+	 return (
+		<div>
+			<h1>child Component</h1>
+			<p>{word}</p>
+			<Child change_parent_title ={ text => setWord(text)} />
+		</div>
+	 )
+   
+   }

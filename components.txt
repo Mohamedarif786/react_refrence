@@ -1,0 +1,87 @@
+components   
+
+function component methods 
+ 
+1. create function  component code 
+
+	var function_component = ()=>{
+		return (
+			<h1> function  component </h1>
+		)
+	}
+  
+	2. component inside another  component 
+
+
+	var inside_component = ()=>{
+	  return (
+		<h1> inside component</h1>
+	  )
+	}
+
+	var main_component = () =>{
+
+		return (
+		  <h1>main component</h1>
+		  <inside_component />
+		)
+	}
+	
+  3. component must have parent element  
+
+	var must_parent = ()=>{
+		return (
+		   <>
+		   <h1>main component</h1>
+		   <inside_component />
+		   </>
+		)
+	}   
+	
+  4. separet file component include main component file 
+     
+	 
+	var separet_componet = ()=>{
+		return (
+			<h1>separet file component</h1
+		)
+	}
+	
+	export default separet_component;
+	
+	
+	
+	note : this file path component/separet.js
+	
+  5. main component file separet compont include method
+  
+	import  SeparetCompoent from './component/separet';
+	
+	
+	var main_component =()=>{
+		return (
+			<>
+			 <h1>main Component </h1>
+			  <SeparetComponent/>
+			</>
+		)
+	}
+
+
+
+ class component method 
+  1 . create class component 
+  
+   import React from 'react';
+   
+  class MainComponent extends React.Component {
+	
+	
+	render(){
+		return (
+			<h2>I m Apple</h2>
+		 )
+	}
+  }
+  
+  export default MainComponent;
