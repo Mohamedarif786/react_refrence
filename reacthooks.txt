@@ -101,3 +101,140 @@ const Counter = () => {
 };
 
 export default Counter;
+
+
+
+5. useEffect  cleanup example 
+
+  1. Clean up component 
+  
+	  import React,{useState} from "react";
+	  import CompA from "./CompA";
+
+	const Cleanup = () =>{
+		const [toggle, setToggle] = useState(true);
+		return(
+			<div>
+				<p>useEffect with cleanup</p>
+				<button onClick={()=>{ setToggle(!toggle) }}>show/hide CompA</button>
+				{ toggle? <CompA />:null}
+			</div>
+		)
+	}
+
+	export default  Cleanup;
+	
+	
+  2. ComponentA 
+  
+	import React,{useEffect} from "react";
+
+	const CompA = () =>{
+		
+		useEffect( ()=>{
+
+			console.log('Effect goes here');
+			const timerid = setInterval(() => {
+				console.log('API Call executed');
+			}, 2000);
+			
+			return () =>{
+				console.log('Cleanup goes here');
+				 clearInterval(timerid);
+			}
+		},[]);
+		return (
+			<div>
+				<p>Component A</p>
+				<hr/>
+			</div>
+		)
+	}
+
+	export default CompA;
+	
+	
+  3.
+	import "./App.css";
+	import Cleanup from "./use_effect_cleanup/Cleanup";
+
+	function App() {
+	  return (
+		<div className="App">
+		  <Cleanup/>
+		</div>
+	  );
+	}
+
+	export default App;
+
+
+ 
+6. useEffect  cleanup  another example  
+
+
+import React, {useState ,useEffect} from "react";
+
+
+	1. ComponentB  
+	const CompB = () =>{
+		const [count ,setCount] =useState(0);
+
+		useEffect( () =>{
+			console.log("effect goes here");
+			let timerid ;
+			if(count){
+				timerid = setInterval(() => {
+					console.log("get price ");
+				}, 2000);
+			}
+			return() =>{
+				console.log('Clean up goes here');
+				clearInterval(timerid);
+			}
+		},[count])
+		return (
+			<div>
+				<p>Component B</p>
+				<button onClick={ () => { setCount(count +1 ) }} >Count is {count}</button>
+			</div>
+		)
+	}
+
+	export default CompB;
+	
+	
+	2.
+	
+	import React,{useState} from "react";
+	import CompB from "./CompB";
+
+	const Cleanup = () =>{
+		const [toggle, setToggle] = useState(true);
+		return(
+			<div>
+				<p>useEffect with cleanup</p>
+				<CompB/>
+			</div>
+		)
+	}
+
+	export default  Cleanup;
+	
+	3. 
+	
+	import "./App.css";
+	import Counter from "./use_effect/Counter";
+	import Cleanup from "./use_effect_cleanup/Cleanup";
+
+	function App() {
+	  const value = 0;
+	  const color = "red";
+	  return (
+		<div className="App">
+		  <Cleanup/>
+		</div>
+	  );
+	}
+
+	export default App;
