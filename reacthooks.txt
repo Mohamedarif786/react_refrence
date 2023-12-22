@@ -238,3 +238,33 @@ import React, {useState ,useEffect} from "react";
 	}
 
 	export default App;
+
+
+	7. useRef example 
+
+	import React ,{useRef,useEffect} from "react";
+
+
+	const StyleElement = () =>{
+	    const colorParagraph =useRef(null);
+	    const color = [ "black","red","blue","gray","green","yellow"];
+
+	    useEffect( ()=>{
+	        console.log(colorParagraph);
+	        console.log(colorParagraph.current);
+	    });
+
+	    
+	    const stylePragraph = () =>{
+	        const randomColor = Math.floor(Math.random() * color.length);
+	        colorParagraph.current.style.color = color[randomColor];
+	    }
+	    return (
+	        <div>
+	            <button onClick={() => stylePragraph()} >Click me</button>
+	            <p ref={colorParagraph}>Welcome back to the channel</p>
+	        </div>
+	    )
+	}
+
+	export default StyleElement;
